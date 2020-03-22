@@ -1,9 +1,28 @@
 # Cisco Tetration Ansible Modules
 
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+- [Cisco Tetration Ansible Modules](#cisco-tetration-ansible-modules)
+  - [Usage](#usage)
+    - [tetration_add_scope](#tetration_add_scope)
+        - [Example Playbook (add_scopes.yml):](#example-playbook-add_scopesyml)
+    - [tetration_add_scope_from_yaml](#tetration_add_scope_from_yaml)
+        - [Example Playbook (scopes_from_yaml.yml):](#example-playbook-scopes_from_yamlyml)
+        - [Example YAML Input file (test_scopes.yml)](#example-yaml-input-file-test_scopesyml)
+    - [tetration_scopes_to_yaml](#tetration_scopes_to_yaml)
+        - [Example Playbook (scopes_to_yaml.yml):](#example-playbook-scopes_to_yamlyml)
+    - [tetration_apps_to_yaml](#tetration_apps_to_yaml)
+    - [tetration_add_app_from_yaml](#tetration_add_app_from_yaml)
+    - [tetration_inventory_filters_to_yaml](#tetration_inventory_filters_to_yaml)
+        - [Example Playbook (inventory_filters_to_yaml.yml):](#example-playbook-inventory_filters_to_yamlyml)
+    - [tetration_inventory_filters_from_yaml](#tetration_inventory_filters_from_yaml)
+        - [Example Playbook (inventory_filters_from_yaml.yml)](#example-playbook-inventory_filters_from_yamlyml)
+        - [Example Input YAML File (test_filters.yml)](#example-input-yaml-file-test_filtersyml)
+    - [tetration_delete_agent](#tetration_delete_agent)
+        - [Example Playbook (delete_agent.yml)](#example-playbook-delete_agentyml)
 
 
+## Overview
 This repo contains several custom Ansible modules for automating tasks in Cisco Tetration using Ansible:
 
 tetration_add_scope - Add Scopes to a Tetration cluster  
