@@ -1,0 +1,18 @@
+---
+- name: Download Scopes from Tetration to a YAML file
+  hosts: mycompany
+  gather_facts: no
+
+  tasks:
+  - name: Get creds from vault
+    include_vars: ./creds.yml
+    no_log: true
+
+  - name: Download scopes from the cluster to a YAML file
+    tetration_scopes_to_yaml:
+      hostname: '{{ inventory_hostname }}'
+      api_key: '{{ API_KEY }}'
+      api_secret: '{{ API_SECRET }}'
+      dest: 'mycompany_scopes.yml'
+      validate_certs: False
+    delegate_to: localhost

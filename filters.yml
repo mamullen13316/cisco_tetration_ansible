@@ -1,0 +1,119 @@
+---
+_id: 5c093643755f024e01d6cd6a
+id: 5c093643755f024e01d6cd6a
+filter_type: UserInventoryFilter
+name: ANY
+description: null
+short_query: {type: eq, field: address_type, value: IPV4}
+query:
+  type: and
+  filters:
+  - {field: vrf_id, type: eq, value: 700026}
+  - {field: address_type, type: eq, value: IPV4}
+public: false
+primary: false
+created_at: 1544107587
+updated_at: 1544107587
+app_scope_id: 5a8dcf26497d4f22ff665f5b
+
+---
+_id: 5c093d33755f0219cbd6cd6f
+id: 5c093d33755f0219cbd6cd6f
+filter_type: UserInventoryFilter
+name: ANY-Internal
+description: null
+short_query:
+  type: or
+  filters:
+  - {type: subnet, field: ip, value: 10.0.0.0/8}
+  - {type: subnet, field: ip, value: 172.16.0.0/12}
+  - {type: subnet, field: ip, value: 192.168.0.0/16}
+query:
+  type: and
+  filters:
+  - {field: vrf_id, type: eq, value: 700026}
+  - type: or
+    filters:
+    - {field: ip, type: subnet, value: 10.0.0.0/8}
+    - {field: ip, type: subnet, value: 172.16.0.0/12}
+    - {field: ip, type: subnet, value: 192.168.0.0/16}
+public: false
+primary: false
+created_at: 1544109363
+updated_at: 1544109363
+app_scope_id: 5a8dcf26497d4f22ff665f5b
+
+---
+_id: 5c095480755f025a08d6cdb0
+id: 5c095480755f025a08d6cdb0
+filter_type: UserInventoryFilter
+name: Active Directory
+description: null
+short_query:
+  type: or
+  filters:
+  - {type: eq, field: ip, value: 10.20.10.50}
+  - {type: eq, field: ip, value: 10.20.10.51}
+  - {type: eq, field: ip, value: 10.20.10.55}
+  - {type: eq, field: ip, value: 10.20.10.52}
+query:
+  type: and
+  filters:
+  - {field: vrf_id, type: eq, value: 700026}
+  - type: or
+    filters:
+    - {field: ip, type: eq, value: 10.20.10.50}
+    - {field: ip, type: eq, value: 10.20.10.51}
+    - {field: ip, type: eq, value: 10.20.10.55}
+    - {field: ip, type: eq, value: 10.20.10.52}
+public: false
+primary: false
+created_at: 1544115328
+updated_at: 1544116955
+app_scope_id: 5a8dcf26497d4f22ff665f5b
+
+---
+_id: 5c093826755f025a08d6cd9f
+id: 5c093826755f025a08d6cd9f
+filter_type: UserInventoryFilter
+name: Internal-DNS
+description: null
+short_query:
+  type: or
+  filters:
+  - {type: eq, field: ip, value: 10.20.10.50}
+  - {type: eq, field: ip, value: 10.20.10.51}
+  - {type: eq, field: ip, value: 10.20.10.55}
+query:
+  type: and
+  filters:
+  - {field: vrf_id, type: eq, value: 700026}
+  - type: or
+    filters:
+    - {field: ip, type: eq, value: 10.20.10.50}
+    - {field: ip, type: eq, value: 10.20.10.51}
+    - {field: ip, type: eq, value: 10.20.10.55}
+public: false
+primary: false
+created_at: 1544108071
+updated_at: 1544116630
+app_scope_id: 5a8dcf26497d4f22ff665f5b
+
+---
+_id: 5c094950497d4f46fa206ce1
+id: 5c094950497d4f46fa206ce1
+filter_type: UserInventoryFilter
+name: TaaS Cluster
+description: null
+short_query: {type: subnet, field: ip, value: 100.119.42.0/24}
+query:
+  type: and
+  filters:
+  - {field: vrf_id, type: eq, value: 700026}
+  - {field: ip, type: subnet, value: 100.119.42.0/24}
+public: false
+primary: false
+created_at: 1544112464
+updated_at: 1544112464
+app_scope_id: 5a8dcf26497d4f22ff665f5b
+

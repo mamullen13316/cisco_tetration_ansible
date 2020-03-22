@@ -1,0 +1,25 @@
+---
+- name: Delete an agent from Tetration
+  hosts: mycompany_pov
+  gather_facts: no
+
+  tasks:
+  - name: Get creds from vault
+    include_vars: ./creds.yml
+    no_log: true
+
+  - name: Delete agent
+    tetration_delete_agent:
+      hostname: '{{ inventory_hostname }}'
+      api_key: '{{ api_key }}'
+      api_secret: '{{ api_secret }}'
+      agent_hostname: '{{ item }}'
+      validate_certs: False
+    with_items:
+      - c3-pmtgear-e3eca5
+      - c3-pmtgear-ae7273
+      - c3-pmtgear-f5206a
+      - c3-pmtgear-ea4d3f
+      - c3-pmtgear-783fe6
+      - c3-pmtgear-354d47
+    delegate_to: localhost

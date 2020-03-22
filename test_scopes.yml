@@ -1,0 +1,21 @@
+---
+short_name: Test
+short_query:
+  type: and
+  filters:
+  - {type: eq, field: address_type, value: IPV4}
+  - {type: subnet, field: ip, value: 30.0.0.0/8}
+parent_app_scope_name: mycompanyPOV
+
+---
+short_name: Testing123
+short_query: {type: subnet, field: ip, value: 10.2.2.2/32}
+parent_app_scope_name: Test
+
+---
+short_name: Testing456
+short_query: {type: subnet, field: ip, value: 10.13.3.0/24}
+parent_app_scope_name: Test
+
+
+

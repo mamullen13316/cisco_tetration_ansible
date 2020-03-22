@@ -1,0 +1,19 @@
+---
+- name: Upload Inventory Filters from a YAML file
+  hosts: mycompany_pov
+  gather_facts: no
+
+  tasks:
+  - name: Get creds from vault
+    include_vars: ./creds.yml
+    no_log: true
+
+  - name: Upload inventory filters to the cluster from a YAML file
+    tetration_add_inventory_filters_from_yaml:
+      hostname: '{{ inventory_hostname }}'
+      api_key: '4aa4f33357834c71bb5869658c2c34f9'
+      api_secret: 'e7777b336fce071ebd90845e8b730632f6a8c6c7'
+      source: 'mycompany_filters.yml'
+      owner_scope_id: '5c476d0a497d4f5f5b1e6d3f'
+      validate_certs: False
+    delegate_to: localhost

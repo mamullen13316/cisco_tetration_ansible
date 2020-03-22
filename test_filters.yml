@@ -1,0 +1,35 @@
+---
+_id: 5c094950497d4f46fa206ce1
+id: 5c094950497d4f46fa206ce1
+filter_type: UserInventoryFilter
+name: Testing_1
+description: null
+short_query: {type: subnet, field: ip, value: 100.100.100.0/24}
+query:
+  type: and
+  filters:
+  - {field: vrf_id, type: eq, value: 104}
+  - {field: ip, type: subnet, value: 100.100.100.0/24}
+public: false
+primary: false
+created_at: 1544112464
+updated_at: 1544112464
+app_scope_id: 5a8dcf26497d4f22ff665f5b
+---
+_id: 5c094950497d4f46fa206ce1
+id: 5c094950497d4f46fa206ce1
+filter_type: UserInventoryFilter
+name: Testing_2
+description: null
+short_query: {type: subnet, field: ip, value: 200.200.200.0/24}
+query:
+  type: and
+  filters:
+  - {field: vrf_id, type: eq, value: 104}
+  - {field: ip, type: subnet, value: 200.200.200.0/24}
+public: false
+primary: false
+created_at: 1544112464
+updated_at: 1544112464
+app_scope_id: 5a8dcf26497d4f22ff665f5b
+

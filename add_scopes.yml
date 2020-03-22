@@ -1,0 +1,23 @@
+---
+- name: Add scopes to Tetration
+  hosts: mycompany
+  gather_facts: no
+
+  tasks:
+ - name: Get creds from vault
+    include_vars: ./creds.yml
+    no_log: true
+
+  - name: Add scope
+    tetration_add_scope:
+      hostname: '{{ inventory_hostname }}'
+      api_key: '{{ API_KEY }}'
+      api_secret: '{{ API_SECRET }}'
+      scope_name: 'Test'
+      parent_scope_name: 'TAAS104 - mycompany'
+      filters:
+        - {type: 'eq', field: 'address_type', value: 'IPV4'}
+        - {type: 'subnet', field: 'ip', value: '30.0.0.0/8'}
+      commit: True
+      validate_certs: False
+    delegate_to: localhost

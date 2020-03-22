@@ -1,0 +1,295 @@
+---
+id: 5c084fec497d4f5dc5206cd7
+name: MicroSeg Video Demo
+app_scope_id: 5c0843f3497d4f5a66206cdd
+description: MicroSegmentation Video Demo
+author: Matt Mullen
+primary: true
+alternate_query_mode: true
+enforced_version: 14
+enforcement_enabled: true
+created_at: 1544048620
+latest_adm_version: 4
+version: v4
+absolute_policies: []
+default_policies:
+- consumer_filter_id: 5c2c1394497d4f0d10206cd9
+  provider_filter_id: 5c2c1394497d4f0d10206cdc
+  consumer_filter_name: client-virtual-machine
+  provider_filter_name: proxy-virtual-machine
+  l4_params:
+  - port: [80, 80]
+    proto: 6
+  action: ALLOW
+  priority: 99
+- consumer_filter_id: 5c2c1394497d4f0d10206cdc
+  provider_filter_id: 5c2c1394497d4f0d10206cdd
+  consumer_filter_name: proxy-virtual-machine
+  provider_filter_name: stream-virtual-machine
+  l4_params:
+  - port: [8080, 8080]
+    proto: 6
+  - port: [8888, 8888]
+    proto: 6
+  action: ALLOW
+  priority: 100
+catch_all_action: DENY
+clusters:
+- id: 5c2c1394497d4f0d10206cd9
+  consistent_uuid: 5c0872a0497d4f09bbcf5616
+  name: client-virtual-machine
+  approved: true
+  nodes:
+  - {ip: 10.5.3.10, name: client-virtual-machine}
+  external: false
+  cluster_queries: []
+  alternate_selected: true
+  short_query: {field: user_x-approle, type: eq, value: client}
+- id: 5c2c1394497d4f0d10206cdc
+  consistent_uuid: 5c0872a0497d4f09bbcf561a
+  name: proxy-virtual-machine
+  approved: true
+  nodes:
+  - {ip: 10.5.2.10, name: proxy-virtual-machine}
+  external: false
+  cluster_queries: []
+  alternate_selected: true
+  short_query: {field: user_x-approle, type: eq, value: proxy-server}
+- id: 5c2c1394497d4f0d10206cdd
+  consistent_uuid: 5c0872a0497d4f09bbcf5619
+  name: stream-virtual-machine
+  approved: true
+  nodes:
+  - {ip: 10.5.1.10, name: stream-virtual-machine}
+  external: false
+  cluster_queries: []
+  alternate_selected: true
+  short_query: {field: user_x-approle, type: eq, value: streaming-server}
+vrf: {id: 104, name: TAAS104, tenant_id: 100, tenant_name: TaaS}
+app_scope_name: TAAS104 - mycompany:InfoSec:Common Policy:All Clouds:X-Academy:Demo:MicroSeg
+
+---
+id: 5c0934c9755f0219cbd6cd67
+name: mycompany Global Policy
+app_scope_id: 5bc8ccd8755f020f316d17f7
+description: Common rules for all apps
+author: Matt Mullen
+primary: true
+alternate_query_mode: true
+enforced_version: 20
+enforcement_enabled: true
+created_at: 1544107209
+latest_adm_version: 0
+version: v0
+absolute_policies: []
+default_policies:
+- consumer_filter_id: 5c093d33755f0219cbd6cd6f
+  provider_filter_id: 5c093826755f025a08d6cd9f
+  consumer_filter_name: ANY-Internal
+  provider_filter_name: Internal-DNS
+  l4_params:
+  - port: [53, 53]
+    proto: 6
+  - port: [53, 53]
+    proto: 17
+  action: ALLOW
+  priority: 98
+- consumer_filter_id: 5c093643755f024e01d6cd6a
+  provider_filter_id: 5c093643755f024e01d6cd6a
+  consumer_filter_name: ANY
+  provider_filter_name: ANY
+  l4_params:
+  - {proto: 1}
+  - port: [80, 80]
+    proto: 6
+  - port: [443, 443]
+    proto: 6
+  action: ALLOW
+  priority: 98
+- consumer_filter_id: 5bc8cced755f020f316d17fa
+  provider_filter_id: 5bc8ccd8755f020f316d17f7
+  consumer_filter_name: TAAS104 - mycompany:InfoSec:Common Policy:VPN Users
+  provider_filter_name: TAAS104 - mycompany:InfoSec:Common Policy:All Clouds
+  l4_params:
+  - port: [22, 22]
+    proto: 6
+  action: ALLOW
+  priority: 98
+- consumer_filter_id: 5c093d33755f0219cbd6cd6f
+  provider_filter_id: 5c093643755f024e01d6cd6a
+  consumer_filter_name: ANY-Internal
+  provider_filter_name: ANY
+  l4_params:
+  - port: [123, 123]
+    proto: 17
+  - port: [53, 53]
+    proto: 17
+  action: ALLOW
+  priority: 98
+- consumer_filter_id: 5c093643755f024e01d6cd6a
+  provider_filter_id: 5c094950497d4f46fa206ce1
+  consumer_filter_name: ANY
+  provider_filter_name: TaaS Cluster
+  l4_params:
+  - port: [443, 443]
+    proto: 6
+  - port: [5660, 5660]
+    proto: 6
+  - port: [5640, 5640]
+    proto: 6
+  action: ALLOW
+  priority: 98
+- consumer_filter_id: 5c093d33755f0219cbd6cd6f
+  provider_filter_id: 5c095480755f025a08d6cdb0
+  consumer_filter_name: ANY-Internal
+  provider_filter_name: Active Directory
+  l4_params:
+  - port: [389, 389]
+    proto: 6
+  - port: [88, 88]
+    proto: 6
+  - port: [389, 389]
+    proto: 17
+  - port: [88, 88]
+    proto: 17
+  - port: [3268, 3268]
+    proto: 6
+  - port: [750, 750]
+    proto: 17
+  - port: [1812, 1812]
+    proto: 17
+  - port: [123, 123]
+    proto: 17
+  - port: [445, 445]
+    proto: 6
+  - port: [135, 135]
+    proto: 6
+  - port: [3389, 3389]
+    proto: 6
+  - port: [137, 138]
+    proto: 17
+  - port: [139, 139]
+    proto: 6
+  - port: [5355, 5355]
+    proto: 6
+  - port: [5355, 5355]
+    proto: 17
+  - port: [1645, 1645]
+    proto: 17
+  - port: [49152, 65535]
+    proto: 6
+  action: ALLOW
+  priority: 98
+- consumer_filter_id: 5c093643755f024e01d6cd6a
+  provider_filter_id: 5c093d33755f0219cbd6cd6f
+  consumer_filter_name: ANY
+  provider_filter_name: ANY-Internal
+  l4_params:
+  - port: [80, 80]
+    proto: 6
+  - port: [443, 443]
+    proto: 6
+  action: DENY
+  priority: 99
+catch_all_action: DENY
+inventory_filters:
+- id: 5c095480755f025a08d6cdb0
+  filter_type: UserInventoryFilter
+  name: Active Directory
+  query:
+    type: and
+    filters:
+    - {field: vrf_id, type: eq, value: 104}
+    - type: or
+      filters:
+      - {field: ip, type: eq, value: 10.20.10.50}
+      - {field: ip, type: eq, value: 10.20.10.51}
+      - {field: ip, type: eq, value: 10.20.10.55}
+      - {field: ip, type: eq, value: 10.20.10.52}
+  parent_app_scope: {id: 5a8dcf26497d4f22ff665f5b, name: TAAS104 - mycompany}
+- id: 5c093643755f024e01d6cd6a
+  filter_type: UserInventoryFilter
+  name: ANY
+  query:
+    type: and
+    filters:
+    - {field: vrf_id, type: eq, value: 104}
+    - {field: address_type, type: eq, value: IPV4}
+  parent_app_scope: {id: 5a8dcf26497d4f22ff665f5b, name: TAAS104 - mycompany}
+- id: 5c093d33755f0219cbd6cd6f
+  filter_type: UserInventoryFilter
+  name: ANY-Internal
+  query:
+    type: and
+    filters:
+    - {field: vrf_id, type: eq, value: 104}
+    - type: or
+      filters:
+      - {field: ip, type: subnet, value: 10.0.0.0/8}
+      - {field: ip, type: subnet, value: 172.16.0.0/12}
+      - {field: ip, type: subnet, value: 192.168.0.0/16}
+  parent_app_scope: {id: 5a8dcf26497d4f22ff665f5b, name: TAAS104 - mycompany}
+- id: 5c093826755f025a08d6cd9f
+  filter_type: UserInventoryFilter
+  name: Internal-DNS
+  query:
+    type: and
+    filters:
+    - {field: vrf_id, type: eq, value: 104}
+    - type: or
+      filters:
+      - {field: ip, type: eq, value: 10.20.10.50}
+      - {field: ip, type: eq, value: 10.20.10.51}
+      - {field: ip, type: eq, value: 10.20.10.55}
+  parent_app_scope: {id: 5a8dcf26497d4f22ff665f5b, name: TAAS104 - mycompany}
+- id: 5c094950497d4f46fa206ce1
+  filter_type: UserInventoryFilter
+  name: TaaS Cluster
+  query:
+    type: and
+    filters:
+    - {field: vrf_id, type: eq, value: 104}
+    - {field: ip, type: subnet, value: 100.119.42.0/24}
+  parent_app_scope: {id: 5a8dcf26497d4f22ff665f5b, name: TAAS104 - mycompany}
+- id: 5bc8ccd8755f020f316d17f7
+  filter_type: AppScope
+  name: TAAS104 - mycompany:InfoSec:Common Policy:All Clouds
+  query:
+    type: and
+    filters:
+    - {field: vrf_id, type: eq, value: 104}
+    - {field: address_type, type: eq, value: IPV4}
+    - type: or
+      filters:
+      - {field: ip, type: subnet, value: 10.0.0.0/8}
+      - {field: ip, type: subnet, value: 172.16.0.0/12}
+      - {field: ip, type: subnet, value: 192.168.0.0/16}
+    - type: or
+      filters:
+      - {field: ip, type: subnet, value: 10.10.0.0/16}
+      - {field: ip, type: subnet, value: 10.20.0.0/16}
+      - {field: ip, type: subnet, value: 10.30.0.0/16}
+      - {field: ip, type: subnet, value: 10.48.0.0/13}
+      - {field: ip, type: subnet, value: 10.240.0.0/27}
+      - {field: ip, type: subnet, value: 10.5.0.0/16}
+  parent_app_scope: {id: 5bc8c7dd755f02143b6d17f7, name: 'TAAS104 - mycompany:InfoSec:Common
+      Policy'}
+- id: 5bc8cced755f020f316d17fa
+  filter_type: AppScope
+  name: TAAS104 - mycompany:InfoSec:Common Policy:VPN Users
+  query:
+    type: and
+    filters:
+    - {field: vrf_id, type: eq, value: 104}
+    - {field: address_type, type: eq, value: IPV4}
+    - type: or
+      filters:
+      - {field: ip, type: subnet, value: 10.0.0.0/8}
+      - {field: ip, type: subnet, value: 172.16.0.0/12}
+      - {field: ip, type: subnet, value: 192.168.0.0/16}
+    - {field: ip, type: subnet, value: 192.168.50.0/24}
+  parent_app_scope: {id: 5bc8c7dd755f02143b6d17f7, name: 'TAAS104 - mycompany:InfoSec:Common
+      Policy'}
+vrf: {id: 104, name: TAAS104, tenant_id: 100, tenant_name: TaaS}
+app_scope_name: TAAS104 - mycompany:InfoSec:Common Policy:All Clouds
+

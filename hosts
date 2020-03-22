@@ -1,0 +1,3 @@
+[mycompany]
+mycompany.tetrationcloud.com ansible_connection=local
+

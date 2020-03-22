@@ -1,0 +1,102 @@
+---
+short_name: TAAS104 - mycompany
+short_query: {type: eq, field: vrf_id, value: 104}
+parent_app_scope_name: null
+
+---
+short_name: Test
+short_query:
+  type: and
+  filters:
+  - {type: eq, field: address_type, value: IPV4}
+  - {type: subnet, field: ip, value: 30.0.0.0/8}
+parent_app_scope_name: TAAS104 - mycompany
+
+---
+short_name: Testing123
+short_query: {type: subnet, field: ip, value: 10.1.1.1/32}
+parent_app_scope_name: Test
+
+---
+short_name: Testing
+short_query: {type: subnet, field: ip, value: 10.1.1.0/24}
+parent_app_scope_name: Test
+
+---
+short_name: InfoSec
+short_query: {type: eq, field: address_type, value: IPV4}
+parent_app_scope_name: TAAS104 - mycompany
+
+---
+short_name: Common Policy
+short_query:
+  type: or
+  filters:
+  - {type: subnet, field: ip, value: 10.0.0.0/8}
+  - {type: subnet, field: ip, value: 172.16.0.0/12}
+  - {type: subnet, field: ip, value: 192.168.0.0/16}
+parent_app_scope_name: InfoSec
+
+---
+short_name: VPN Users
+short_query: {type: subnet, field: ip, value: 192.168.50.0/24}
+parent_app_scope_name: Common Policy
+
+---
+short_name: All Clouds
+short_query:
+  type: or
+  filters:
+  - {type: subnet, field: ip, value: 10.10.0.0/16}
+  - {type: subnet, field: ip, value: 10.20.0.0/16}
+  - {type: subnet, field: ip, value: 10.30.0.0/16}
+  - {type: subnet, field: ip, value: 10.48.0.0/13}
+  - {type: subnet, field: ip, value: 10.240.0.0/27}
+  - {type: subnet, field: ip, value: 10.5.0.0/16}
+parent_app_scope_name: Common Policy
+
+---
+short_name: Customers
+short_query: {type: eq, field: user, value: Customers}
+parent_app_scope_name: All Clouds
+
+---
+short_name: Sandbox
+short_query: {type: eq, field: user, value: Sandbox}
+parent_app_scope_name: All Clouds
+
+---
+short_name: Lab Infra
+short_query: {type: eq, field: user, value: Lab Infra}
+parent_app_scope_name: All Clouds
+
+---
+short_name: Academy
+short_query: {type: eq, field: user, value: academy}
+parent_app_scope_name: All Clouds
+
+---
+short_name: Demo
+short_query: {type: eq, field: user_environment, value: demo}
+parent_app_scope_name: Academy
+
+---
+short_name: MicroSeg
+short_query:
+  type: and
+  filters:
+  - {type: eq, field: user_bu, value: academy}
+  - {type: eq, field: user_environment, value: demo}
+  - {type: eq, field: user_appid, value: microseg}
+parent_app_scope_name: Demo
+
+---
+short_name: Students-Shared
+short_query: {type: eq, field: user_type, value: students-common}
+parent_app_scope_name: Academy
+
+---
+short_name: Students-Prod
+short_query: {type: eq, field: user_environment, value: students-prod}
+parent_app_scope_name: Students-Shared
+
