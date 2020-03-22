@@ -25,21 +25,21 @@
 ## Overview
 This repo contains several custom Ansible modules for automating tasks in Cisco Tetration using Ansible:
 
-tetration_add_scope - Add Scopes to a Tetration cluster  
+    tetration_add_scope - Add Scopes to a Tetration cluster  
 
-tetration_add_scope_from_yaml - Add Scopes from a YAML file  
+    tetration_add_scope_from_yaml - Add Scopes from a YAML file  
 
-tetration_scopes_to_yaml - Export Scopes to a YAML file  
+    tetration_scopes_to_yaml - Export Scopes to a YAML file  
 
-tetration_apps_to_yaml - Export all Tetration Application Workspaces to a YAML file  
+    tetration_apps_to_yaml - Export all Tetration Application Workspaces to a YAML file  
 
-tetration_add_app_from_yaml - Add one or more Application Workspaces from a YAML file  
+    tetration_add_app_from_yaml - Add one or more Application Workspaces from a YAML file  
 
-tetration_inventory_filters_to_yaml - Export all Tetration Inventory Filters to a YAML file  
+    tetration_inventory_filters_to_yaml - Export all Tetration Inventory Filters to a YAML file  
 
-tetration_inventory_filters_from_yaml - Create one or more Inventory Filters from a YAML file  
+    tetration_inventory_filters_from_yaml - Create one or more Inventory Filters from a YAML file  
 
-tetration_delete_agent - Delete one or more Tetration agents based on the hostname
+    tetration_delete_agent - Delete one or more Tetration agents based on the hostname
 
 
 
